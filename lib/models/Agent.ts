@@ -60,9 +60,11 @@ const AgentSchema = new Schema<IAgent>(
     timestamps: true,
     toJSON: {
       transform: (_doc, ret) => {
-        delete ret.apiKey;
-        delete ret.__v;
-        return ret;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const r = ret as any;
+        delete r.apiKey;
+        delete r.__v;
+        return r;
       },
     },
   }
