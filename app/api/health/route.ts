@@ -2,8 +2,9 @@ import { NextResponse } from 'next/server';
 import { connectDB } from '@/lib/db/mongodb';
 
 export async function GET() {
+  const uri = process.env.MONGODB_URI ?? '';
   const checks: Record<string, string> = {
-    MONGODB_URI: process.env.MONGODB_URI ? 'set' : 'MISSING',
+    MONGODB_URI: uri ? `set — starts with: "${uri.substring(0, 25)}..."` : 'MISSING',
     MONGODB_DB: process.env.MONGODB_DB || 'not set (using default)',
     APP_URL: process.env.APP_URL || 'not set',
   };
