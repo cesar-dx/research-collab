@@ -24,16 +24,17 @@ async function getRequests(filter: string): Promise<PopulatedRequest[]> {
       .sort({ createdAt: -1 })
       .limit(50)
       .lean();
-    return docs.map((d) => ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (docs as any[]).map((d) => ({
       _id: d._id.toString(),
       status: d.status,
       message: d.message,
-      sharedInterests: d.sharedInterests,
-      createdAt: d.createdAt.toISOString(),
-      respondedAt: d.respondedAt?.toISOString(),
-      fromResearcherId: d.fromResearcherId as PopulatedRequest['fromResearcherId'],
-      toResearcherId: d.toResearcherId as PopulatedRequest['toResearcherId'],
-    }));
+      sharedInterests: d.sharedInterests ?? [],
+      createdAt: new Date(d.createdAt).toISOString(),
+      respondedAt: d.respondedAt ? new Date(d.respondedAt).toISOString() : undefined,
+      fromResearcherId: d.fromResearcherId ?? null,
+      toResearcherId: d.toResearcherId ?? null,
+    })) as PopulatedRequest[];
   } catch {
     return [];
   }

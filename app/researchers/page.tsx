@@ -29,7 +29,8 @@ async function getResearchers(query: string, area: string): Promise<ResearcherDo
       .sort(query ? { score: { $meta: 'textScore' } } : { createdAt: -1 })
       .limit(50)
       .lean();
-    return docs.map((d) => ({ ...d, _id: d._id.toString(), createdAt: d.createdAt.toISOString() }));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (docs as any[]).map((d) => ({ ...d, _id: d._id.toString(), createdAt: new Date(d.createdAt).toISOString() })) as ResearcherDoc[];
   } catch {
     return [];
   }
