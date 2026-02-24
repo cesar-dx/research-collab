@@ -13,7 +13,10 @@ if (!cached) {
 }
 
 export async function connectDB(): Promise<typeof mongoose> {
-  const MONGODB_URI = process.env.MONGODB_URI;
+  const raw = process.env.MONGODB_URI ?? '';
+  // Strip any accidental leading characters before the scheme (e.g. tab, =, spaces)
+  const idx = raw.indexOf('mongodb');
+  const MONGODB_URI = idx > 0 ? raw.substring(idx) : raw;
   if (!MONGODB_URI) throw new Error('Missing MONGODB_URI environment variable');
 
   if (cached.conn) return cached.conn;

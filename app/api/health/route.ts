@@ -2,7 +2,9 @@ import { NextResponse } from 'next/server';
 import { connectDB } from '@/lib/db/mongodb';
 
 export async function GET() {
-  const uri = process.env.MONGODB_URI ?? '';
+  const raw = process.env.MONGODB_URI ?? '';
+  const idx = raw.indexOf('mongodb');
+  const uri = idx > 0 ? raw.substring(idx) : raw;
   const checks: Record<string, string> = {
     MONGODB_URI: uri ? `set — starts with: "${uri.substring(0, 25)}..."` : 'MISSING',
     MONGODB_DB: process.env.MONGODB_DB || 'not set (using default)',
