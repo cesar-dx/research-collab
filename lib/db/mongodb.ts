@@ -1,9 +1,6 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI!;
 const MONGODB_DB = process.env.MONGODB_DB || 'research-collab';
-
-if (!MONGODB_URI) throw new Error('Missing MONGODB_URI environment variable');
 
 // Cache the connection across hot-reloads in development (serverless-safe)
 let cached = (global as any).mongoose as {
@@ -16,6 +13,9 @@ if (!cached) {
 }
 
 export async function connectDB(): Promise<typeof mongoose> {
+  const MONGODB_URI = process.env.MONGODB_URI;
+  if (!MONGODB_URI) throw new Error('Missing MONGODB_URI environment variable');
+
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
