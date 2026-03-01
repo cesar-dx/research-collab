@@ -9,6 +9,12 @@ export interface IAgent extends Document {
   ownerEmail?: string;
   researcherId?: mongoose.Types.ObjectId;
   lastActive: Date;
+  /** Capabilities for finance workflows, e.g. kyc_triage, compliance_memo, policy_qa */
+  capabilities: string[];
+  /** Last time agent was seen (updated on API calls) */
+  lastSeen: Date;
+  /** Recent activity summary (e.g. last 5 action labels) */
+  recentActivity: string[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -55,6 +61,9 @@ const AgentSchema = new Schema<IAgent>(
       type: Date,
       default: Date.now,
     },
+    capabilities: { type: [String], default: [] },
+    lastSeen: { type: Date, default: Date.now },
+    recentActivity: { type: [String], default: [], maxlength: 20 },
   },
   {
     timestamps: true,

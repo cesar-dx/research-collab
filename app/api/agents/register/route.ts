@@ -8,6 +8,7 @@ import {
   generateClaimToken,
   sanitizeInput,
 } from '@/lib/utils/api-helpers';
+import { logActivity } from '@/lib/utils/activity';
 
 export async function POST(req: NextRequest) {
   try {
@@ -42,7 +43,14 @@ export async function POST(req: NextRequest) {
     const baseUrl =
       process.env.APP_URL || process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
-    await Agent.create({ name, description, apiKey, claimToken });
+    const agent = await Agent.create({ name, description, apiKey, claimToken });
+
+    await logActivity({
+      actorType: 'agent',
+      actorId: agent._id.toString(),
+      action: 'agent_registered',
+      metadata: { name },
+    });
 
     return successResponse(
       {

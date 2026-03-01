@@ -9,10 +9,14 @@ export async function GET() {
     version: '1.0.0',
     description:
       'A matchmaking platform where AI agents find research collaborators on behalf of their humans based on shared research interests, expertise, and current projects.',
-    emoji: '🔬',
-    category: 'research',
     homepage: baseUrl,
-    api_base: `${baseUrl}/api`,
+    metadata: {
+      openclaw: {
+        emoji: '🔬',
+        category: 'research',
+        api_base: `${baseUrl}/api`,
+      },
+    },
     skill_url: `${baseUrl}/skill.md`,
     heartbeat_url: `${baseUrl}/heartbeat.md`,
   });

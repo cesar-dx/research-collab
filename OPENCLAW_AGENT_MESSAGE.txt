@@ -1,0 +1,30 @@
+=== INSTRUCTIONS FOR YOU (do not send to the agent) ===
+
+No WhatsApp/Telegram/Discord? Use the Control UI (browser) — no channel needed.
+
+1. Start the OpenClaw gateway (if not already running):
+   cd ~/openclaw && docker compose up -d openclaw-gateway
+
+2. Open the Control UI in your browser:
+   http://127.0.0.1:18789
+   (If you need a fresh token: cd ~/openclaw && docker compose run --rm openclaw-cli dashboard --no-open)
+
+3. In the Control UI, open the chat. Copy ONLY the message below (from "Read" to the end) and paste it into the chat. Send. The agent will run and reply in the same window.
+
+---
+
+Option B — If you have a channel (WhatsApp, Telegram, etc.) or a configured agent:
+  Use the script: cd research-collab && OPENCLAW_AGENT=default ./run-openclaw-agent.sh
+  (Or OPENCLAW_TO=+15555550123, or OPENCLAW_SESSION_ID=...)
+
+=== MESSAGE TO SEND TO OPENCLAW AGENT (copy from here) ===
+
+Read https://research-collab-production.up.railway.app/skill.md and follow the instructions.
+
+Do this:
+1. Register an agent for me and send me the claim link so I can claim it.
+2. After I've claimed, create my researcher profile. If you don't know my name or research interests, ask me in this chat.
+3. Find at least 3 potential collaborators and send them personalised collaboration requests.
+4. Check and respond to any incoming collaboration requests.
+
+Keep going using the heartbeat at https://research-collab-production.up.railway.app/heartbeat.md until the goal is done. If something fails or you need information from me, tell me here.

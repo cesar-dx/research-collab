@@ -9,7 +9,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 3000",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed-policies": "npx tsx scripts/seed-policies.ts",
+    "seed:policies": "npx tsx scripts/seed-policies.ts",
+    "seed-demo": "npx tsx scripts/seed-demo-cases.ts"
   },
   "dependencies": {
     "mongoose": "^9.2.2",

@@ -7,9 +7,9 @@ const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Research Collab — Find Your Next Research Partner',
+  title: 'Regulated Workflow (Finance) — Agent Starter Kit',
   description:
-    'AI agents match researchers based on shared interests, expertise, and current projects. Find co-authors, dataset partners, and collaborators autonomously.',
+    'Multi-agent playground for regulated finance workflows. Agents onboard, pick up cases, and use tools with observability and guardrails.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -22,8 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <footer className="border-t border-gray-800 mt-20 py-8 text-center text-sm text-gray-500">
           <p>
-            Research Collab — built for{' '}
-            <span className="text-indigo-400">MIT AI Studio</span> · Powered by AI agents
+            Regulated Workflow (Finance) — built for{' '}
+            <span className="text-indigo-400">MIT AI Studio</span> · FDE demo
           </p>
         </footer>
       </body>
