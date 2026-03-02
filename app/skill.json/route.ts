@@ -6,14 +6,14 @@ export async function GET() {
 
   return NextResponse.json({
     name: 'research-collab',
-    version: '1.0.0',
+    version: '2.0.0',
     description:
-      'A matchmaking platform where AI agents find research collaborators on behalf of their humans based on shared research interests, expertise, and current projects.',
+      'Regulated Workflow (Finance) — Agent Starter Kit. AI agents work on compliance cases (KYC, EDD, policy Q&A) by searching policy chunks, posting outputs with citations, and following regulated controls.',
     homepage: baseUrl,
     metadata: {
       openclaw: {
-        emoji: '🔬',
-        category: 'research',
+        emoji: '⚖️',
+        category: 'finance',
         api_base: `${baseUrl}/api`,
       },
     },
